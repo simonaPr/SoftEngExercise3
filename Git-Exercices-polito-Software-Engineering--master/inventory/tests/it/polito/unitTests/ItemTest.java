@@ -1,11 +1,14 @@
 package it.polito.unitTests;
 
+import java.util.List;
+
 import junit.framework.*;
-import it.polito.inventory.*;
+import it.polito.inventory.*; 
 
 public class ItemTest extends TestCase{
 	
 	Item i1, i2, i3, i4, i5, i6;
+	Supplier s1, s2;
 	
 	@Override
 	public void setUp(){
@@ -15,6 +18,8 @@ public class ItemTest extends TestCase{
 		i4 = new Item("444444", 4);
 		i5 = new Item("555555", 5);
 		i6 = new Item("666666", 6);
+		s1 = new Supplier("s1","Torino");
+		s2 = new Supplier("s2", "Milano");
 	}
 	
 	@Override
@@ -25,6 +30,8 @@ public class ItemTest extends TestCase{
 		i4 = null;
 		i5 = null;
 		i6 = null;
+		s1 = null;
+		s2 = null;
 	}
 	
 	public void testGetItemCode(){
@@ -103,6 +110,15 @@ public class ItemTest extends TestCase{
 		s = "pizza";
 		i1.setName(s);
 		assertEquals("The name of item i1 should be \"pizza\"",s, i1.getName());
+	}
+	
+	public void testAddSupplier(){
+		List<Supplier> l;
+		
+		l=i2.getSuppliers();
+		assertEquals("No supplier defined yet for i2",0,l.size());
+		i2.addSupplier(s1);
+		assertEquals("Supplier s1 added to i2",1,l.size());
 	}
 	
 }
